@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace DoublyLinkedList
 {
@@ -34,10 +35,32 @@ namespace DoublyLinkedList
         public int Count { get; private set; }
         public bool IsSynchronized { get; private set; }
         public object SyncRoot { get; private set; }
-        
-        public IEnumerator GetEnumerator()
+
+        public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var current = Head;
+
+            while (current.Next != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+
+        public IEnumerator<T> GetReverseEnumerator()
+        {
+            var current = Tail;
+
+            while (current.Previous != null)
+            {
+                yield return current.Value;
+                current = current.Previous;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
 
         public void CopyTo(Array array, int index)
