@@ -75,21 +75,6 @@ namespace LinkedList.DoublyLinkedList
             Head ??= Tail;
         }
 
-        private DoublyLinkedListNode<T> Find(T value)
-        {
-            var current = Head;
-
-            while (current != null)
-            {
-                if (current.Value.Equals(value))
-                    return current;
-
-                current = current.Next;
-            }
-
-            return null;
-        }
-
         public bool Contains(T value)
         {
             return Find(value) != null;
@@ -137,6 +122,21 @@ namespace LinkedList.DoublyLinkedList
             Count--;
 
             return true;
+        }
+        
+        private DoublyLinkedListNode<T> Find(T value)
+        {
+            var current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(value))
+                    return current;
+
+                current = current.Next;
+            }
+
+            return null;
         }
     }
 }
